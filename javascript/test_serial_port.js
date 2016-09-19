@@ -1,7 +1,3 @@
-/**
- * To run this, install node-serialport globally: `npm install -g serialport`
- */
-
 var SerialPort = require('serialport');
 var path = require('path');
 var dispatch = require(path.resolve(__dirname, './sbp/')).dispatch;

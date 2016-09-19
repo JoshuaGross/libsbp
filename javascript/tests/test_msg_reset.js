@@ -25,4 +25,18 @@ describe('encode and decode a MSG_RESET message', function () {
     assert(msgBuffer instanceof Buffer);
     assert(msgBuffer.equals(decode(msgBuffer).toBuffer()));
   });
+
+  it('should encode, and round-trip a MSG_RESET message, with a sender ID', function () {
+    var msg = constructMsg(MsgReset, {}, 0x42);
+    var msgBuffer = msg.toBuffer();
+
+    assert(msgBuffer instanceof Buffer);
+    assert(msgBuffer.equals(decode(msgBuffer).toBuffer()));
+  });
+
+  it('should encode a MSG_RESET message with correct sender ID', function () {
+    var msg = constructMsg(MsgReset, {}, 0x42);
+    var msgBuffer = msg.toBuffer();
+    assert.equal(decode(msgBuffer).sbp.sender, 0x42);
+  });
 });
